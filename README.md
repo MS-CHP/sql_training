@@ -13,7 +13,10 @@ You can use either setup path below. Both are fully supported.
 ## Option A: GitHub Codespaces (no install required)
 
 1. Open this repository on GitHub.
-2. Click **Code** -> **Codespaces** -> **Create codespace on main**.
+2. Click **Code** (A in image below)-> **Codespaces** (B)-> **Create codespace on main** (C).
+
+<img src="./assets/codespaces_access.png" alt="clicks to access Codespaces" width="300">
+
 3. Open SQLTools in the left sidebar. It may take a minute to appear while the environment finishes setup. It is the small cylinder icon (see 3 in image below).
 
 <img src="./assets/sql_connect_in_codespaces.png" alt="sql connection steps" width="300">
