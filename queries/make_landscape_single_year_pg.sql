@@ -73,8 +73,8 @@ WITH sa_expanded AS (
   WHERE sa.cover_entire_state = 'Yes'
     AND LEFT(sa.dental_only_plan, 1) = 'N'
 )
--- inspect:
- SELECT * FROM sa_expanded WHERE state_code = 'WI' AND business_year::text = (SELECT business_year FROM params)
+-- inspect: 
+-- SELECT * FROM sa_expanded WHERE state_code = 'AL' AND business_year::text = '2024'
 
 -- ============================================================
 -- CTE 2: summary
@@ -116,8 +116,8 @@ WITH sa_expanded AS (
        pl.tehb_inn_tier1_individual_moop,
        pl.tehb_inn_tier1_family_per_person_moop
      ), 'per person', ''), '$', '') AS oopm
-    ,cm."FIPS" AS fips
-    ,cm."County" AS county
+    ,cm."FIPS" AS "fips"
+    ,cm."County" AS "county"
   FROM public.aca_rate_puf AS r
   JOIN public.aca_plan_attributes_puf AS pl
     ON  r.plan_id       = pl.standard_component_id
@@ -142,7 +142,7 @@ WITH sa_expanded AS (
     AND pl.market_coverage = 'Individual'
 )
 -- inspect: 
-SELECT state_code, COUNT(*) AS plan_county_rows FROM summary GROUP BY state_code
+-- SELECT state_code, COUNT(*) AS plan_county_rows FROM summary GROUP BY state_code
 
 
 
@@ -162,11 +162,11 @@ SELECT state_code, COUNT(*) AS plan_county_rows FROM summary GROUP BY state_code
     ,ROW_NUMBER() OVER (
        PARTITION BY county, metal_level, state_code
        ORDER BY individual_rate
-     ) AS metal_rank
+     ) AS "metal_rank"
     ,ROW_NUMBER() OVER (
        PARTITION BY county, metal_level, issuer_market_place_marketing_name, state_code
        ORDER BY individual_rate
-     ) AS issuer_rank
+     ) AS "issuer_rank"
   FROM summary
 )
 -- inspect: SELECT * FROM ranking WHERE county = 'Adams' AND state_code = 'WI' ORDER BY metal_level, metal_rank
