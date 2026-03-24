@@ -13,7 +13,7 @@ DROP TABLE IF EXISTS params;
 CREATE TEMP TABLE params AS
 SELECT
   '2024'  AS business_year,
-  'All' AS state_filter;   -- set to a 2-letter state code, or 'All' for all states
+  'AL' AS state_filter;   -- set to a 2-letter state code, or 'All' for all states
 
 
 -- ============================================================
@@ -29,6 +29,8 @@ SELECT DISTINCT
   ,t.state
   ,t.rate_area
 FROM public."county_zip_rating_area_marketplace" AS t;
+
+-- SELECT * FROM fips_ra
 
 
 -- ============================================================
@@ -301,7 +303,9 @@ JOIN fips_ra AS f
   ON  d.fips       = f.fips
   AND d.state_code = f.state
 LEFT JOIN public.parent_mapping_2025 AS pm
-  ON d.issuer_id = pm.hios_issuer_id;
+  ON d.issuer_id = pm.hios_issuer_id
+LIMIT 100
+;
 
 
 -- ============================================================
