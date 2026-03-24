@@ -74,7 +74,7 @@ WITH sa_expanded AS (
     AND LEFT(sa.dental_only_plan, 1) = 'N'
 )
 -- inspect:
---  SELECT * FROM sa_expanded WHERE state_code = 'WI' AND business_year::text = (SELECT business_year FROM params)
+ SELECT * FROM sa_expanded WHERE state_code = 'WI' AND business_year::text = (SELECT business_year FROM params)
 
 -- ============================================================
 -- CTE 2: summary
@@ -141,7 +141,10 @@ WITH sa_expanded AS (
     AND (pl.state_code = params.state_filter OR params.state_filter = 'All')
     AND pl.market_coverage = 'Individual'
 )
--- inspect: SELECT state_code, COUNT(*) AS plan_county_rows FROM summary GROUP BY state_code
+-- inspect: 
+SELECT state_code, COUNT(*) AS plan_county_rows FROM summary GROUP BY state_code
+
+
 
 -- ============================================================
 -- CTE 3: ranking
