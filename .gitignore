@@ -1,6 +1,7 @@
 .env
 config.py
 local/*
+!local/.gitkeep
 .DS_Store
 __pycache__/
 *.py[cod]

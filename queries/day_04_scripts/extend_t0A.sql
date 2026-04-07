@@ -1,5 +1,5 @@
 -- Once we have a sense of the data, we can do create some of the pivot table structures we did in excel
--- but return a value on each row.
+-- by returning a value on each row.
 
 
 -- 1. Min individual rate within rating area + metal level
